@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<!-- Le dice al navegador que este es un documento HTML5 -->
+
+<html lang="es">
+<!-- lang="es" indica que el idioma es español -->
+
+<head>
+<!-- Sección de configuración del documento -->
+<!-- El usuario no ve esta parte en la pantalla -->
+
+  <meta charset="UTF-8">
+  <!-- Define que el documento usa caracteres en español -->
+  <!-- Sin esto no se verían tildes ni la ñ correctamente -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Hace que la página se adapte a cualquier tamaño de pantalla -->
+
+  <title>ElectroStock — Registro</title>
+  <!-- Texto que aparece en la pestaña del navegador -->
+
+  <link rel="stylesheet" href="https://bootswatch.com/5/lux/bootstrap.min.css">
+  <!-- Importa el tema Lux de Bootswatch desde internet -->
+  <!-- Le da el diseño profesional a la página -->
+
+</head>
+
+<body>
+<!-- Aquí va todo lo que el usuario ve en pantalla -->
+
+  <!-- ============================================
+    BARRA DE NAVEGACIÓN
+    Muestra el nombre de la tienda arriba
+    Es igual a la del login para mantener
+    consistencia en el diseño
+  ============================================ -->
+  <nav class="navbar navbar-dark bg-primary">
+  <!-- navbar = barra de navegación de Bootstrap -->
+  <!-- navbar-dark = letras claras para fondo oscuro -->
+  <!-- bg-primary = color azul de fondo -->
+
+    <div class="container">
+    <!-- container = centra el contenido con márgenes -->
+
+      <span class="navbar-brand mb-0 h1">⚡ ElectroStock</span>
+      <!-- Muestra el nombre de la tienda en la barra -->
+
+    </div>
+  </nav>
+
+  <!-- ============================================
+    CONTENEDOR PRINCIPAL
+    Centra el formulario en la pantalla
+  ============================================ -->
+  <div class="container mt-5">
+  <!-- mt-5 = margen arriba para bajar el formulario -->
+
+    <div class="row justify-content-center">
+    <!-- row = fila de Bootstrap -->
+    <!-- justify-content-center = centra horizontalmente -->
+
+      <div class="col-md-4">
+      <!-- col-md-4 = columna que ocupa 4 de 12 espacios -->
+      <!-- Hace que el formulario no sea muy ancho -->
+
+        <!-- ============================================
+          TARJETA DE REGISTRO
+          Contiene el formulario para crear
+          una cuenta nueva
+        ============================================ -->
+        <div class="card shadow">
+        <!-- card = tarjeta de Bootstrap -->
+        <!-- shadow = sombra debajo de la tarjeta -->
+
+          <!-- Encabezado de la tarjeta -->
+          <div class="card-header bg-primary text-white text-center">
+          <!-- bg-primary = fondo azul -->
+          <!-- text-white = texto blanco -->
+          <!-- text-center = texto centrado -->
+
+            <h4 class="mb-0">Crear Cuenta</h4>
+            <!-- Título del formulario -->
+
+          </div>
+
+          <!-- Cuerpo de la tarjeta con el formulario -->
+          <div class="card-body p-4">
+          <!-- p-4 = relleno interno -->
+
+            <div id="error-msg" class="alert alert-danger d-none"></div>
+            <!-- Caja roja para mostrar errores -->
+            <!-- d-none = oculto por defecto -->
+            <!-- JavaScript lo hace visible cuando hay un error -->
+
+            <div id="success-msg" class="alert alert-success d-none"></div>
+            <!-- Caja verde para mostrar mensajes de éxito -->
+            <!-- d-none = oculto por defecto -->
+            <!-- JavaScript lo hace visible cuando el registro fue exitoso -->
+
+            <!-- Campo nombre -->
+            <div class="mb-3">
+            <!-- mb-3 = margen abajo para separar los campos -->
+
+              <label class="form-label">Nombre</label>
+              <!-- Etiqueta del campo nombre -->
+
+              <input
+                type="text"
+                id="nombre"
+                class="form-control"
+                placeholder="Ingresa tu nombre"
+              >
+              <!-- Campo de texto para el nombre -->
+              <!-- type="text" acepta cualquier texto -->
+              <!-- id="nombre" permite leer el valor desde JavaScript -->
+              <!-- placeholder = texto de ayuda cuando el campo está vacío -->
+
+            </div>
+
+            <!-- Campo email -->
+            <div class="mb-3">
+
+              <label class="form-label">Email</label>
+              <!-- Etiqueta del campo email -->
+
+              <input
+                type="email"
+                id="email"
+                class="form-control"
+                placeholder="Ingresa tu email"
+              >
+              <!-- Campo de email -->
+              <!-- type="email" valida que sea un email correcto -->
+              <!-- id="email" permite leer el valor desde JavaScript -->
+
+            </div>
+
+            <!-- Campo contraseña -->
+            <div class="mb-3">
+
+              <label class="form-label">Contraseña</label>
+              <!-- Etiqueta del campo contraseña -->
+
+              <input
+                type="password"
+                id="password"
+                class="form-control"
+                placeholder="Ingresa tu contraseña"
+              >
+              <!-- Campo de contraseña -->
+              <!-- type="password" oculta los caracteres escritos -->
+              <!-- id="password" permite leer el valor desde JavaScript -->
+
+            </div>
+
+            <!-- Botón de registro -->
+            <button
+              class="btn btn-primary w-100"
+              onclick="registrar()"
+            >
+              Registrarse
+            </button>
+            <!-- btn-primary = botón azul -->
+            <!-- w-100 = ocupa todo el ancho disponible -->
+            <!-- onclick="registrar()" ejecuta la función al hacer clic -->
+
+            <!-- Enlace para volver al login -->
+            <div class="text-center mt-3">
+              <small>¿Ya tienes cuenta?
+                <a href="index.html">Inicia sesión aquí</a>
+              </small>
+              <!-- Enlace para ir a la página de login -->
+              <!-- Para cuando el usuario ya tiene una cuenta -->
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Bootstrap JavaScript necesario para los componentes -->
+
+  <script src="app.js"></script>
+  <!-- Nuestro archivo JavaScript con todas las funciones -->
+  <!-- Aquí está la función registrar() que se ejecuta al hacer clic -->
+
+</body>
+</html>

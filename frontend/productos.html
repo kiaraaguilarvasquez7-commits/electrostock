@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8"> <!-- Permite tildes -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsive -->
+  <title>ElectroStock</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Estilos modernos -->
+  <style>
+    body {
+      /* Fondo tipo app moderna */
+      background: linear-gradient(135deg, #667eea, #764ba2);
+    }
+
+    /* Navbar con mismo color del login */
+    .navbar {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+    }
+
+    /* Card de producto */
+    .card-producto {
+      border-radius: 16px;
+      transition: 0.3s;
+    }
+
+    /* Efecto hover */
+    .card-producto:hover {
+      transform: translateY(-5px);
+    }
+
+    /* Imagen del producto */
+    .img-producto {
+      width: 100%;
+      height: 160px;
+      object-fit: contain;
+      background: #fff;
+      padding: 2px;
+      border-radius: 15px 15px 0 0;
+    }
+
+    /* Precio resaltado */
+    .precio {
+      color: #667eea;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-dark shadow-sm">
+    <div class="container">
+
+      <!-- Nombre de la app -->
+      <span class="navbar-brand">⚡ ElectroStock</span>
+
+      <div class="d-flex gap-3">
+        <!-- Mensaje de bienvenida dinámico -->
+        <span id="bienvenida" class="text-white"></span>
+
+        <!-- Cierra sesión -->
+        <button class="btn btn-outline-light btn-sm" onclick="cerrarSesion()">
+          Cerrar Sesión
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTENIDO -->
+  <div class="container mt-4">
+
+    <!-- Título + botón -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h3 class="text-white">Inventario</h3>
+
+      <!-- Abre el modal -->
+      <button class="btn btn-light" onclick="abrirModalAgregar()">
+        + Nuevo Producto
+      </button>
+    </div>
+
+    <!-- Mensajes -->
+    <div id="error-msg" class="alert alert-danger d-none"></div>
+    <div id="success-msg" class="alert alert-success d-none"></div>
+
+    <!-- 🔥 Contenedor donde JS pinta las CARDS -->
+    <div id="tabla-productos" class="row g-4"></div>
+
+  </div>
+
+  <!-- MODAL -->
+  <div class="modal fade" id="modalProducto" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Header del modal -->
+        <div class="modal-header text-white" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+          <h5 id="modal-titulo">Producto</h5>
+          <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+
+        <!-- Formulario -->
+        <div class="modal-body">
+          <div id="modal-error" class="alert alert-danger d-none"></div>
+
+          <!-- ID oculto para editar -->
+          <input type="hidden" id="producto-id">
+
+          <input type="text" id="producto-nombre" class="form-control mb-2" placeholder="Nombre">
+          <textarea id="producto-descripcion" class="form-control mb-2" placeholder="Descripción"></textarea>
+          <input type="number" id="producto-precio" class="form-control mb-2" placeholder="Precio" min="0">
+          <input type="number" id="producto-stock" class="form-control mb-2" placeholder="Stock" min="0">
+
+          <!-- Imagen -->
+          <input type="file" id="producto-imagen" class="form-control mb-2">
+          <img id="preview-imagen" width="120">
+
+        </div>
+
+        <!-- Botones -->
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button class="btn btn-primary" onclick="guardarProducto()">Guardar</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="app.js"></script>
+
+  <script>
+    // Se ejecuta al cargar la página
+    window.onload = function () {
+
+      const token = localStorage.getItem('token');
+
+      // Si no hay sesión → login
+      if (!token) {
+        window.location.href = 'index.html';
+      }
+
+      // Mostrar nombre usuario
+      const nombre = localStorage.getItem('nombre');
+      document.getElementById('bienvenida').textContent = `Bienvenido, ${nombre}`;
+
+      // Cargar productos
+      cargarProductos();
+    }
+  </script>
+
+</body>
+
+</html>
